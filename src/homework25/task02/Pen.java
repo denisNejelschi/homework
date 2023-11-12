@@ -4,34 +4,30 @@ import java.util.Scanner;
 
 public class Pen {
 
-  int inkLevel = 3;
+  int inkLevel = 1000;
 
   public String write() {
     Scanner s = new Scanner(System.in);
+    System.out.println("enter your text");
     String line = s.nextLine();
     inkLevel -= line.length();
-
     if (inkLevel > line.length()) {
       System.out.println(line);
-    } else {
-      refill();
-      System.out.println("ink refill successful");
     }
     return line;
   }
 
-  public int checkInk() {
-    System.out.println();
-    return inkLevel;
-  }
+  public void checkInk() {
+    System.out.println( "ink Level is :" +inkLevel);
 
-  public void refill() {
-    if (inkLevel < 0) {
-      inkLevel = 1000;
+  }
+  public void refill(){
+          inkLevel = 1000;
+    System.out.println("refill successful");
     }
   }
 
-}
+
 
 
 
