@@ -1,42 +1,69 @@
 package homework27.task02;
 
-public class Account {
-  public String name;
-  protected String bankName;
-  private final String IBAN;
-  private double accountStatus;
-  private double creditLimit;
+import java.util.Scanner;
 
-  public Account(String name, String bankName, String IBAN, double accountStatus,
-      double creditLimit) {
+public class Account {
+
+
+  public String name;
+  private String bankName;
+  private final String IBAN;
+  private double balance;
+
+
+  public Account(String name, String bankName, String IBAN, double balance) {
     this.name = name;
     this.bankName = bankName;
     this.IBAN = IBAN;
-    this.accountStatus = accountStatus;
-    this.creditLimit = creditLimit;
+    this.balance = balance;
+
   }
+
   public void setName(String name) {
     this.name = name;
   }
+
   public String getBankName() {
     return bankName;
   }
+
   public String getIBAN() {
     return IBAN;
   }
-  public double getAccountStatus() {
-    return accountStatus;
+
+  public double getBalance() {
+    return balance;
   }
-  public void setAccountStatus(double accountStatus) {
-    this.accountStatus = accountStatus;
+
+  public void setBalance(double balance) {
+    this.balance = balance;
   }
-  public double getCreditLimit() {
-    return creditLimit;
-  }
-  public void setCreditLimit(double creditLimit) {
-      this.creditLimit = creditLimit;
+
+  public double pay() {
+    Scanner scanner = new Scanner(System.in);
+    double transaction = scanner.nextDouble();
+    while (transaction > balance) {
+      System.out.println("insufficient fund");
+      break;
     }
+      transaction = scanner.nextDouble();
 
+      return balance - transaction;
 
+  }
+
+  public double get() {
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("How much to get?");
+    double transaction = scanner.nextDouble();
+    return balance + transaction;
+  }
 }
+
+
+
+
+
+
+
 
