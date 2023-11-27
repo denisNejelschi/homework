@@ -2,7 +2,7 @@ package homework33.task03;
 
 import java.util.Scanner;
 
-public class Main {
+public class Maingit
 
   public static int[] getFibonacci(int n) {
 
