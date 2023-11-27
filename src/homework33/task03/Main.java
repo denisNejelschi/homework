@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-  public static void getFibonacci(int n) {
+  public static int[] getFibonacci(int n) {
 
     int[] array = new int[n];
     array[0] = 0;
@@ -15,6 +15,7 @@ public class Main {
     for (int i = 0; i < array.length; i++)
       System.out.print(array[i] + "| ");
 
+    return array;
   }
 
 
