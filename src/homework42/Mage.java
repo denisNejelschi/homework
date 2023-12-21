@@ -2,7 +2,7 @@ package homework42;
 
 import java.util.Objects;
 
-public class Mage extends Player implements Attackable{
+public class Mage extends Player implements Attackable {
 
 
   protected double mana;
@@ -43,20 +43,37 @@ public class Mage extends Player implements Attackable{
   @Override
   public String toString() {
     return "Mage{" +
-        "mana=" + mana +
+
         ", name='" + name + '\'' +
         ", health=" + health +
-        ", power=" + attack +
+        ", attack=" + attack + " mana=" + mana +
         '}';
   }
 
   @Override
   public void attack(Attackable target) {
 
-  }
+    if (target instanceof Entity) {
+      System.out.println(name + " attacked " + ((Entity) target).getName());
+      int mageAttack = attack*2;
+      if (mana > 0) {
+
+        mana--;
+      }
+      ((Entity) target).setHealth(getHealth() - mageAttack);
+    } else if (mana <=0)
+      ((Entity) target).setHealth(getHealth());
+    }
+
 
   @Override
   public void takeDamage(Attackable source) {
+    if (source instanceof Entity) {
+      mana += ((Entity) source).attack * 0.2;
+      System.out.println(name + " was attacked by " + ((Entity) source).getName()
+          + " and received damage " + ((Entity) source).getAttack());
+    }
+
 
   }
 }

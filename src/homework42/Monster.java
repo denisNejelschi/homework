@@ -1,6 +1,8 @@
 package homework42;
 
-public class Monster  extends Entity implements Attackable{
+import java.lang.annotation.Target;
+
+public class Monster extends Entity implements Attackable {
 
   protected Monster(String name, int health, int attack) {
     super(name, health, attack);
@@ -9,29 +11,26 @@ public class Monster  extends Entity implements Attackable{
 
   @Override
   public void attack(Attackable target) {
-
     if (target instanceof Entity) {
-      if (isAlive()) {
-
-        ((Entity) target).setHealth(getHealth() - getAttack());
-        System.out.println(getName() + " attacked " + ((Entity) target).getName());
-      }
-    }
-  }
-
-    @Override
-    public void takeDamage(Attackable source) {
-      if (isAlive()) {
-        if(source instanceof Entity){
-         setHealth(getHealth()- ((Entity) source).attack);
-
-        }
-
-      }
+      System.out.println(name + " attacked " + ((Entity) target).getName());
+      ((Entity) target).setHealth(getHealth() - getAttack());
     }
 
+  }
+
+
+  @Override
+  public void takeDamage(Attackable source) {
+    System.out.println(name + " was attacked by " + ((Entity) source).getName()
+        + " and received damage " + ((Entity) source).getAttack());
 
   }
+}
+
+
+
+
+
 
 
 

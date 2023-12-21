@@ -7,7 +7,7 @@ protected String name;
 protected int health;
 protected int attack;
 
-  protected Entity(String name, int health, int attack) {
+  public Entity(String name, int health, int attack) {
     this.name = name;
     this.health = health;
     this.attack = attack;
