@@ -3,68 +3,70 @@ package homework42;
 import java.util.Objects;
 
 public abstract class Entity {
-protected String name;
-protected int health;
-protected int attack;
+    protected String name;
+    protected int health;
+    protected int damage;
 
-  public Entity(String name, int health, int attack) {
-    this.name = name;
-    this.health = health;
-    this.attack = attack;
-  }
-
-public  boolean isAlive(){
-  return this.health > 0;
-}
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public int getHealth() {
-    return health;
-  }
-
-  public void setHealth(int health) {
-    this.health = health;
-  }
-
-  public int getAttack() {
-    return attack;
-  }
-
-  public void setAttack(int attack) {
-    this.attack = attack;
-  }
-
-  @Override
-  public String toString() {
-    return "Entity{" +
-        "name='" + name + '\'' +
-        ", health=" + health +
-        ", power=" + attack +
-        '}';
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
+    protected Entity(String name, int health, int damage) {
+        this.name = name;
+        this.health = health;
+        this.damage = damage;
     }
-    if (obj == null || getClass() != obj.getClass()) {
-      return false;
-    }
-    Entity entity = (Entity) obj;
-    return health == entity.health && attack == entity.attack && Objects.equals(name,
-        entity.name);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(name, health, attack);
-  }
+    public boolean isAlive() {
+        return health > 0;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "name='" + name + '\'' +
+                ", health=" + health +
+                ", damage=" + damage +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, damage);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o instanceof Entity) {
+            Entity entity = (Entity) o;
+            return entity.damage == this.damage
+                    && entity.health == this.health
+                    && entity.name.equals(this.name);
+        }
+        return false;
+    }
 }

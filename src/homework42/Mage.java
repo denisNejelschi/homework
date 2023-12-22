@@ -1,14 +1,11 @@
 package homework42;
 
-import java.util.Objects;
+public class Mage extends Player  {
+  private double mana;
 
-public class Mage extends Player implements Attackable {
 
-
-  protected double mana;
-
-  public Mage(String name, int health, int attack, double mana) {
-    super(name, health, attack);
+  public Mage(String name, int health, int damage, double mana) {
+    super(name, health, damage);
     this.mana = mana;
   }
 
@@ -21,59 +18,44 @@ public class Mage extends Player implements Attackable {
   }
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    if (!super.equals(o)) {
-      return false;
-    }
-    Mage mage = (Mage) o;
-    return Double.compare(mana, mage.mana) == 0;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(super.hashCode(), mana);
-  }
-
-  @Override
   public String toString() {
     return "Mage{" +
-
-        ", name='" + name + '\'' +
+        "name='" + name + '\'' +
         ", health=" + health +
-        ", attack=" + attack + " mana=" + mana +
+        ", damage=" + damage +
+        ", mana=" + mana +
         '}';
   }
 
   @Override
-  public void attack(Attackable target) {
-
-    if (target instanceof Entity) {
-      System.out.println(name + " attacked " + ((Entity) target).getName());
-      int mageAttack = attack*2;
-      if (mana > 0) {
-
-        mana--;
-      }
-      ((Entity) target).setHealth(getHealth() - mageAttack);
-    } else if (mana <=0)
-      ((Entity) target).setHealth(getHealth());
+  public boolean equals(Object o) {
+    if (!super.equals(o)) {
+      return false;
     }
-
+    if (o instanceof Mage) {
+      return ((Mage) o).mana == this.mana;
+    }
+    return false;
+  }
 
   @Override
-  public void takeDamage(Attackable source) {
-    if (source instanceof Entity) {
-      mana += ((Entity) source).attack * 0.2;
-      System.out.println(name + " was attacked by " + ((Entity) source).getName()
-          + " and received damage " + ((Entity) source).getAttack());
+  public void attack(Attackable target) {
+    int finalDamage;
+    if (mana >= 1) {
+      finalDamage = 2 * damage;
+      mana--;
+      System.out.println("Mage " + name + " attacks with " + finalDamage + " damage, his mana is now " + mana);
+    } else {
+      finalDamage = 0;
+      System.out.println("Mage " + name + " doesn't have enough mana to attack!");
     }
+    target.takeDamage(this, finalDamage);
+  }
 
-
+  @Override
+  public void takeDamage(Attackable source, int damage) {
+    health -= damage;
+    mana += 0.2;
+    System.out.println("Mana " + " took " + damage + " damage, his health is now " + health + " and mana is " + mana);
   }
 }
