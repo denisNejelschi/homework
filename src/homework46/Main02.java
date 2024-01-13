@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main02 {
 
-  public static void getDay(int dayNr) {
+  public static String getDay(int dayNr) {
     switch (dayNr) {
       case 1:
         System.out.println("Monday");
@@ -26,10 +26,9 @@ public class Main02 {
       case 7:
         System.out.println("Sunday");
         break;
-      default:
+
     }
-
-
+    return null;
   }
 
 

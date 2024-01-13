@@ -1,27 +1,30 @@
 package homework46;
 
+
 import java.util.Scanner;
+
 
 public class Main01 {
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
+    int count = 0;
+    double[] numbers = new double[1000];
     double sum = 0;
-    double input;
-    int i = 0;
-    double[] arr = new double[1000];
-    do {
-      System.out.println("Enter some numbers..");
-      input = scanner.nextDouble();
-      arr[i] = input;
-      i++;
-      sum += input;
-    } while (input != 0);
-    for (int j = 0; j < i - 1; j++) {
-      System.out.print(arr[j] + " ");
+    double number = scanner.nextDouble();
+   do {
+      numbers[count] = number;
+      count++;
+      sum += number;
+      number = scanner.nextDouble();
+    } while (number != 0);
+
+    double average = sum / count;
+    System.out.println("Entered numbers :");
+    for (int i = 0; i < count; i++) {
+      System.out.print(numbers[i] + " ");
     }
-    System.out.println("\naverage is : " + sum / (i - 1));
-    scanner.close();
+    System.out.println("\nСреднее арифметическое: " + average);
   }
 }
 
