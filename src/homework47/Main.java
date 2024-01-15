@@ -23,7 +23,7 @@ public class Main {
     for (int i = 0; i < arrSint.length; i++) {
       arrSint[i] = new Pair<>(products[i], prices[i]);
     }
-    System.out.print(Arrays.toString(arrSint));
+
     System.out.print("\n++++++++++++++");
 
     searchPrice(arrSint, "Onion");

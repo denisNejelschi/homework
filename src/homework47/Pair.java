@@ -26,11 +26,5 @@ public class Pair <L,R>{
     this.prices = prices;
   }
 
-  @Override
-  public String toString() {
 
-    return "\nproduct: " + getNames() + " "
-           + "\nprice :" + getPrices()
-        + "\n-----------";
-  }
 }
