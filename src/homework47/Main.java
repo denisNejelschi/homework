@@ -5,14 +5,14 @@ import java.util.Arrays;
 public class Main {
 
 
-  public static void searchPrice(Pair[] arr, String userChoise) {
+  public static double searchPrice(Pair[] arr, String userChoise) {
     for (Pair pair : arr) {
       if (pair.getNames().equals(userChoise)) {
-        System.out.println("\nPrice for " + userChoise + " is " + pair.getPrices());
-        return;
+
+        return (double) pair.getPrices();
       }
     }
-    System.out.println("Error 404, product not found");
+    return -1;
   }
 
   public static void main(String[] args) {
@@ -24,11 +24,9 @@ public class Main {
       arrSint[i] = new Pair<>(products[i], prices[i]);
     }
 
-    System.out.print("\n++++++++++++++");
+    System.out.println(searchPrice(arrSint, "Cucumber"));
 
-    searchPrice(arrSint, "Onion");
-    System.out.println("--------------------");
-    searchPrice(arrSint, "Cranberries");
+    System.out.println(searchPrice(arrSint, "Cranberries"));
 
 
   }
